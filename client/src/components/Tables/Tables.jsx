@@ -71,11 +71,26 @@ export default function Tables() {
                     <img className="w-[90px]" src={logo} alt="" />
                 </div>
                 <NavLink to="/home">
-                    <div className="toRegisters flex mr-8 cursor-pointer transition-all">
+                    <div className="toRegisters flex bg-white w-[90px] justify-center rounded-lg text-black mr-8 cursor-pointer transition-all">
                         
-                        <p className="text-white text-lg">Form</p>
+                        <p className="text-lg">Form</p>
                     </div>
                 </NavLink>
+
+                <NavLink to="/users">
+                    <div className="toRegisters flex bg-white w-[100px] justify-center rounded-lg text-black mr-8 cursor-pointer transition-all">
+                        
+                        <p className=" text-lg">Users</p>
+                    </div>
+                </NavLink>
+
+                <NavLink to="/register">
+                    <div className="toRegisters flex bg-white w-[100px] justify-center rounded-lg text-black mr-8 cursor-pointer transition-all">
+                        
+                        <p className=" text-lg">Registers</p>
+                    </div>
+                </NavLink>
+
             </div>
             <div className="tables-container bg-gray-100 w-full">
                 <div className="content bg-gray-100 mt-24 w-[1500px] shadow-lg m-auto h-auto">
