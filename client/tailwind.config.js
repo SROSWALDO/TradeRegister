@@ -8,7 +8,8 @@ module.exports = {
         'Poppins': ["Poppins", "sans-serif"]
       },
       backgroundImage: {
-        'background-home': "url(./assets/logisticawallpaper.jpeg)"
+        'background-home': "url(./assets/logisticawallpaper.jpeg)",
+        'background-register': "radial-gradient(circle, rgba(255, 255, 255, 0.1) 20%, rgba(0, 0, 0, 1) 40%)"
       },
       keyframes: {
         fadeIn: {

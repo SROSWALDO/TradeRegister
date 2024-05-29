@@ -1,6 +1,7 @@
 //? Importaciones
 const server = require("./src/server.js");
 const { connection } = require("./src/db.js");
+const userAdmin = require("./src/utilities/userAdmin.js")
 
 //? Constantes
 
@@ -11,8 +12,8 @@ const PORT = process.env.PORT || 3001; // Elige el puerto definido en las variab
 const startServer = async () => {
   try {
     // Sincroniza la base de datos con los modelos
-    await connection.sync({ force: false }); // Usa 'false' para no borrar la base de datos en cada reinicio del servidor
-
+    await connection.sync({ force: true }); // Usa 'false' para no borrar la base de datos en cada reinicio del servidor
+    await userAdmin();
     // Inicia el servidor en el puerto especificado
     server.listen(PORT, () => console.log(`Servidor levantado en el puerto: ${PORT}`));
   } catch (error) {

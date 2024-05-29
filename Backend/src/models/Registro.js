@@ -59,5 +59,5 @@ module.exports = (sequelize) => {
 
     });
 
-    return Registro; // Aquí se exporta el modelo Registro
+    return Registro; 
 };

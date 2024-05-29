@@ -46,16 +46,135 @@ export default function Home() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (
+      !formData.origen &&
+      !formData.cp_origen &&
+      !formData.destino &&
+      !formData.cp_destino &&
+      !formData.direccion_destino &&
+      !formData.direccion_origen &&
+      !formData.estado_destino &&
+      !formData.estado_origen &&
+      !formData.peso &&
+      !formData.dimensiones &&
+      !formData.cantidad_skids
+    ) {
+      Swal.fire({
+        title: "Error",
+        text: "Please complete all fields",
+        icon: "info",
+      });
+      return;
+    }
+
+    // Validación individual de cada campo
+    if (!formData.origen) {
+      Swal.fire({
+        title: "Error",
+        text: "Please complete the 'City' field for the origin",
+        icon: "info",
+      });
+      return;
+    }
+
+    if (!formData.cp_origen) {
+      Swal.fire({
+        title: "Error",
+        text: "Please complete the 'CP' field for the origin",
+        icon: "info",
+      });
+      return;
+    }
+
+    if (!formData.destino) {
+      Swal.fire({
+        title: "Error",
+        text: "Please complete the 'City' field for the destination",
+        icon: "info",
+      });
+      return;
+    }
+
+    if (!formData.cp_destino) {
+      Swal.fire({
+        title: "Error",
+        text: "Please complete the 'CP' field for the destination",
+        icon: "info",
+      });
+      return;
+    }
+
+    if (!formData.direccion_destino) {
+      Swal.fire({
+        title: "Error",
+        text: "Please complete the 'Address' field for the destination",
+        icon: "info",
+      });
+      return;
+    }
+
+    if (!formData.direccion_origen) {
+      Swal.fire({
+        title: "Error",
+        text: "Please complete the 'Address' field for the origin",
+        icon: "info",
+      });
+      return;
+    }
+
+    if (!formData.estado_destino) {
+      Swal.fire({
+        title: "Error",
+        text: "Please complete the 'State' field for the destination",
+        icon: "info",
+      });
+      return;
+    }
+
+    if (!formData.estado_origen) {
+      Swal.fire({
+        title: "Error",
+        text: "Please complete the 'State' field for the origin",
+        icon: "info",
+      });
+      return;
+    }
+
+    if (!formData.peso) {
+      Swal.fire({
+        title: "Error",
+        text: "Please complete the 'Weight' field",
+        icon: "info",
+      });
+      return;
+    }
+
+    if (!formData.dimensiones) {
+      Swal.fire({
+        title: "Error",
+        text: "Please complete the 'Dimensions' field",
+        icon: "info",
+      });
+      return;
+    }
+
+    if (!formData.cantidad_skids) {
+      Swal.fire({
+        title: "Error",
+        text: "Please complete the 'Quantity' field",
+        icon: "info",
+      });
+      return;
+    }
+
     try {
-      const response = await axios.post(
-        "http://localhost:3001/register",
-        formData
-      );
-      succes();
+      const response = await axios.post("http://localhost:3001/register", formData);
+      Swal.fire({
+        title: "Successful",
+        text: "Register Created",
+        icon: "success",
+      });
 
-      console.log("Register Creado", response.data);
-
-      // Limpiar los campos del formulario
       setFormData({
         origen: "",
         cp_origen: "",
@@ -86,6 +205,12 @@ export default function Home() {
             <div className="toRegisters flex cursor-pointer mt-5 hover:border-b hover:ml-1 transition-all">
               <img className="ml-[20px]" src={bar} alt="" />
               <p className="text-white ml-1 text-lg">Registers</p>
+            </div>
+          </NavLink>
+
+          <NavLink to="/logout">
+            <div className="toRegisters flex cursor-pointer mt-5 hover:border-b hover:ml-1 transition-all">
+              <p className="text-white absolute bottom-0 rounded-md bg-red-600 p-1 ml-1 text-lg">Logout</p>
             </div>
           </NavLink>
         </div>
@@ -393,8 +518,7 @@ export default function Home() {
                           height="24px"
                           viewBox="0 0 24 24"
                           width="24px"
-                          fill="#FFFFFF"
-                        >
+                          fill="#FFFFFF">
                           <path d="M0 0h24v24H0V0z" fill="none"></path>
                           <path
                             d="M5 5v14h14V7.83L16.17 5H5zm7 13c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-8H6V6h9v4z"
@@ -408,16 +532,14 @@ export default function Home() {
                     <div className="flex-initial">
                       <button
                         type="button"
-                        className="flex items-center px-5 py-2.5 font-medium tracking-wide text-black capitalize rounded-md hover:bg-green-200 hover:fill-current hover:text-green-600 focus:outline-none transition duration-300 transform active:scale-95 ease-in-out"
-                      >
+                        className="flex items-center px-5 py-2.5 font-medium tracking-wide text-black capitalize rounded-md hover:bg-green-200 hover:fill-current hover:text-green-600 focus:outline-none transition duration-300 transform active:scale-95 ease-in-out">
                         <span className="pl-2 mx-1">Send To Email</span>
 
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 24 24"
                           fill="currentColor"
-                          class="size-6"
-                        >
+                          class="size-6">
                           <path d="M3.478 2.404a.75.75 0 0 0-.926.941l2.432 7.905H13.5a.75.75 0 0 1 0 1.5H4.984l-2.432 7.905a.75.75 0 0 0 .926.94 60.519 60.519 0 0 0 18.445-8.986.75.75 0 0 0 0-1.218A60.517 60.517 0 0 0 3.478 2.404Z" />
                         </svg>
                       </button>

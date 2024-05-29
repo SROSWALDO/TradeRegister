@@ -7,7 +7,7 @@ const router = require("./routes/index.routes");
 
 //? Middlewares
 server.use(express.json());
-server.use(express.urlencoded({ extended: true }));
+server.use(express.urlencoded({ extended: false }));
 server.use(morgan("dev"));
 server.use(cors());
 server.use((req, res, next) => {
