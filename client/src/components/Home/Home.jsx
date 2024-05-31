@@ -11,8 +11,12 @@ import cp from "../../assets/cp.svg";
 import unidad from "../../assets/unidad.svg";
 import cantidad from "../../assets/cantidad.svg";
 import dimension from "../../assets/dimension.svg";
+import { useAuth } from "../Login/Autenticate";
 
 export default function Home() {
+
+  const { token } = useAuth(); // Obtener el token del contexto de autenticación
+
   const [formData, setFormData] = useState({
     origen: "",
     cp_origen: "",
@@ -25,6 +29,7 @@ export default function Home() {
     peso: "",
     dimensiones: "",
     cantidad_skids: "",
+    
   });
 
   const succes = () => {
@@ -168,7 +173,13 @@ export default function Home() {
     }
 
     try {
-      const response = await axios.post("http://localhost:3001/register", formData);
+      const response = await axios.post("http://localhost:3001/register", formData, {
+        headers: {
+          Authorization: `Bearer ${token}` // Incluir el token en el encabezado de la solicitud
+        }
+      });
+
+
       Swal.fire({
         title: "Successful",
         text: "Register Created",

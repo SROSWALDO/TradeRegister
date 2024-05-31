@@ -9,13 +9,14 @@ const { crearUsuarioHandler } = require('../handlers/postUserHandler');
 const getUsersHandler = require('../handlers/getUsersHandler');
 const deleteUserHandler = require('../handlers/deleteUserHandler');
 const loginHandler = require('../handlers/loginHandler');
+const authenticateToken = require('../middlewares/Autenticate');
 
 
 const router = Router();
 
 //* Registros -----------------------------------------
-router.get("/register", getRegisters);
-router.post("/register", registerHandler);
+router.get("/register",authenticateToken, getRegisters);
+router.post("/register",authenticateToken, registerHandler);
 router.delete("/register/:id", deletedRegisterHandler);
 
 //* Usuarios ------------------------------------------

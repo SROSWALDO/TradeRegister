@@ -12,11 +12,17 @@ export default function Tables() {
   const [dataFetched, setDataFetched] = useState(false);
   const { users } = useAuth();
 
+  const { token } = useAuth();
+
 
   const fetchData = async () => {
     const url = 'http://localhost:3001/register';
     try {
-      const response = await axios.get(url);
+      const response = await axios.get(url, {
+        headers: {
+          Authorization: `Bearer ${token}` // Incluye el token en el encabezado
+        }
+      });
       const data = response.data;
       if (data && Array.isArray(data.registers)) {
         setRegisters(data.registers);
@@ -49,7 +55,11 @@ export default function Tables() {
 
     if (confirmDelete.isConfirmed) {
       try {
-        const response = await axios.delete(`http://localhost:3001/register/${registerId}`);
+        const response = await axios.delete(`http://localhost:3001/register/${registerId}`, {
+          headers: {
+            Authorization: `Bearer ${token}` // Incluye el token en el encabezado
+          }
+        });
         if (response.status === 200) {
           setRegisters((prevRegisters) => prevRegisters.filter((r) => r.id !== registerId));
           Swal.fire("Register deleted!", "", "success");
@@ -123,6 +133,7 @@ export default function Tables() {
                       <th className="py-2 px-4 border-b">Dimensions</th>
                       <th className="py-2 px-4 border-b">Quantity</th>
                       <th className="py-2 px-4 border-b">Creado en</th>
+                      <th className="py-2 px-4 border-b">Usuario</th>
                       <th className="py-2 px-4 border-b"></th>
                     </tr>
                   </thead>
@@ -145,6 +156,7 @@ export default function Tables() {
                         <td className="py-2 px-4 border-b">{register.dimensiones}</td>
                         <td className="py-2 px-4 border-b">{register.cantidad_skids}</td>
                         <td className="py-2 px-4 border-b">{new Date(register.createdAt).toLocaleString()}</td>
+                        <td className="py-2 px-4 border-b">{register.usuarioId}</td>
                         <td className="py-2 px-4 border-b">
                           <button onClick={() => deleteRegister(register.id)} className="bg-red-500 rounded-md w-8 p-1 hover:bg-red-600">
                             <img src={trash} alt="Delete" />

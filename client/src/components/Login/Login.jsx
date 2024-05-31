@@ -26,8 +26,8 @@ export default function Login() {
         setError(response.data.error);
       } else {
         // Maneja la respuesta exitosa
-        login(response.data.user); // Aquí se almacena la información del usuario
-        setUsers(response.data)
+        login(response.data.user, response.data.token); // Aquí se almacena la información del usuario y el token
+        setUsers(response.data.user)
         navigate("/home");
       }
     } catch (error) {

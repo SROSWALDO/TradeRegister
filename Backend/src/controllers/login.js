@@ -1,13 +1,14 @@
+const jwt = require('jsonwebtoken');
 const { Usuario } = require('../db');  // Ajusta la ruta según tu estructura de proyecto
 
 const login = async (usuario, password) => {
     try {
-        // Busca el usuario por correo electrónico
+        // Busca el usuario por nombre de usuario
         const userData = await Usuario.findOne({ where: { nombreUsuario: usuario } });
 
         // Verifica si el usuario existe
         if (!userData) {
-            return { error: "User email" };
+            return { error: "User not found" };
         }
 
         // Compara la contraseña ingresada con la almacenada
@@ -18,12 +19,18 @@ const login = async (usuario, password) => {
             return { error: "Incorrect password" };
         }
 
-        // Retorna solo los datos necesarios del usuario
+        // Genera un token JWT
+        const token = jwt.sign({ id: userData.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+        // Retorna solo los datos necesarios del usuario junto con el token
         return {
-            id: userData.id,
-            nombreUsuario: userData.nombreUsuario,
-            correoElectronico: userData.correoElectronico,
-            isAdmin: userData.isAdmin,
+            user: {
+                id: userData.id,
+                nombreUsuario: userData.nombreUsuario,
+                correoElectronico: userData.correoElectronico,
+                isAdmin: userData.isAdmin,
+            },
+            token
         };
 
     } catch (error) {

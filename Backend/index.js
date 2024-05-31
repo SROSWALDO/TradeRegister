@@ -1,4 +1,6 @@
 //? Importaciones
+require('dotenv').config();
+console.log('JWT_SECRET:', process.env.JWT_SECRET);
 const server = require("./src/server.js");
 const { connection } = require("./src/db.js");
 const userAdmin = require("./src/utilities/userAdmin.js")

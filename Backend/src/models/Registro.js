@@ -56,7 +56,10 @@ module.exports = (sequelize) => {
             type: DataTypes.FLOAT,
             allowNull: false,
         },
-
+        usuarioId: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
     });
 
     return Registro; 
