@@ -29,7 +29,6 @@ export default function Home() {
     peso: "",
     dimensiones: "",
     cantidad_skids: "",
-    
   });
 
   const succes = () => {

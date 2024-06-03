@@ -1,16 +1,16 @@
 const nodemailer = require('nodemailer');
 
 const transporter = nodemailer.createTransport({
-    service: 'gmail', // Puedes usar cualquier otro servicio de correo
+    service: 'hotmail',
     auth: {
-        user: 'tuCorreo@gmail.com', // Reemplaza con tu correo
-        pass: 'tuContraseña', // Reemplaza con tu contraseña
+        user: 'oswaldodevelop@hotmail.com',
+        pass: 'cashmasciycwujlq',
     },
 });
 
-const sendEmail = (to, subject, text) => {
+const sendEmail = (from, to, subject, text) => {
     const mailOptions = {
-        from: 'tuCorreo@gmail.com',
+        from: 'oswaldodevelop@hotmail.com',
         to,
         subject,
         text,

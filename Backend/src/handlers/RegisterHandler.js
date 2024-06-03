@@ -4,6 +4,7 @@ const registerHandler = async (req, res) => {
     try {
         const registerData = req.body;
         registerData.usuarioId = req.user.id;
+        registerData.userEmail = req.user.correoElectronico; 
 
         const newRegister = await postRegister(registerData);
 
