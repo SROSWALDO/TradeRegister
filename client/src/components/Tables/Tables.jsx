@@ -5,7 +5,9 @@ import { NavLink } from 'react-router-dom';
 import logo from "../../assets/Logo.png";
 import trash from "../../assets/trash.svg";
 import Swal from "sweetalert2";
-import { useAuth } from '../Login/Autenticate'; // Asegúrate de importar el contexto de autenticación
+import { useAuth } from '../Login/Autenticate';
+import RegisterPDF from './RegisterPDF'
+import { PDFDownloadLink } from '@react-pdf/renderer';
 
 export default function Tables() {
   const { setRegisters, registers } = useStore();
@@ -140,10 +142,10 @@ export default function Tables() {
                   <tbody>
                     {registers.map((register, index) => (
                       <tr key={index}>
-                        <td className="py-2 px-4 border-b text-blue-700 underline">
-                          <a href="https://www.youtube.com/?hl=es-419&gl=MX" target="blank">
-                            {register.id}
-                          </a>
+                        <td className="py-2 px-4 border-b text-blue-700 underline cursor-pointer">
+                        <PDFDownloadLink document={<RegisterPDF register={register} />} fileName={`register_${register.id}.pdf`}>
+                            {({ loading }) => (loading ? 'Loading...' : register.id)}
+                        </PDFDownloadLink>
                         </td>
                         <td className="py-2 px-4 border-b">{register.origen}</td>
                         <td className="py-2 px-4 border-b">{register.cp_origen}</td>
