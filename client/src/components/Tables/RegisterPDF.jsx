@@ -105,16 +105,16 @@ const RegisterPDF = ({ register }) => (
           </View>
           <View style={styles.column}>
             <Text style={styles.label}>Peso</Text>
-            <Text style={styles.value}>{register.peso}</Text>
+            <Text style={styles.value}>{register.peso} kg</Text>
           </View>
         </View>
         <View style={styles.row}>
           <View style={styles.column}>
             <Text style={styles.label}>Dimensiones</Text>
-            <Text style={styles.value}>{register.dimensiones}</Text>
+            <Text style={styles.value}>{register.dimensiones} m</Text>
           </View>
           <View style={styles.column}>
-            <Text style={styles.label}>Cantidad Skids</Text>
+            <Text style={styles.label}>Cantidad de Skids</Text>
             <Text style={styles.value}>{register.cantidad_skids}</Text>
           </View>
         </View>
