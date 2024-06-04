@@ -1,5 +1,6 @@
 const { Registro } = require("../db");
 const sendEmail = require('../middlewares/emailService');
+const generateEmailTemplate = require('../middlewares/emailTemplate')
 
 const postRegister = async (registerData) => {
     try {
@@ -47,20 +48,8 @@ const postRegister = async (registerData) => {
         const remitente = userEmail;
         const destinatario = 'yaco2002@live.com.mx';
         const subject = 'Nuevo Registro Posteado';
-        const text = `
-            Usuario: ${userEmail}
-            Origen: ${origen}
-            Código Postal Origen: ${cp_origen}
-            Destino: ${destino}
-            Código Postal Destino: ${cp_destino}
-            Dirección Destino: ${direccion_destino}
-            Dirección Origen: ${direccion_origen}
-            Estado Destino: ${estado_destino}
-            Estado Origen: ${estado_origen}
-            Peso: ${peso}
-            Dimensiones: ${dimensiones}
-            Cantidad Skids: ${cantidad_skids}`;
-        sendEmail(remitente, destinatario, subject, text);
+        const html = generateEmailTemplate(registerData);
+        sendEmail(remitente, destinatario, subject, html);
 
         return newRegister;
     } catch (error) {
