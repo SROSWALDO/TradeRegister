@@ -21,7 +21,7 @@ const generateEmailTemplate = (data) => {
                     border: 1px solid #e0e0e0;
                 }
                 .header {
-                    background-color: #4CAF50;
+                    background-color: #000;
                     color: white;
                     text-align: center;
                     padding: 20px;
@@ -40,8 +40,8 @@ const generateEmailTemplate = (data) => {
                 .section h2 {
                     margin-top: 0;
                     font-size: 18px;
-                    color: #4CAF50;
-                    border-bottom: 2px solid #4CAF50;
+                    color: #000;
+                    border-bottom: 2px solid #000;
                     padding-bottom: 5px;
                 }
                 .section p {
@@ -50,7 +50,7 @@ const generateEmailTemplate = (data) => {
                     font-size: 14px;
                 }
                 .section p strong {
-                    color: #4CAF50;
+                    color: #000;
                 }
                 .footer {
                     text-align: center;
@@ -68,7 +68,7 @@ const generateEmailTemplate = (data) => {
         <body>
             <div class="container">
                 <div class="header">
-                    <h1>Nuevo Registro Posteado</h1>
+                    <h1>Nuevo Registro</h1>
                 </div>
                 <div class="content">
                     <div class="section">
@@ -91,7 +91,7 @@ const generateEmailTemplate = (data) => {
                     </div>
                     <div class="section">
                         <h2>Detalles del Envío</h2>
-                        <p><strong>Peso:</strong> ${data.peso}</p>
+                        <p><strong>Peso:</strong> ${data.peso} kg</p>
                         <p><strong>Dimensiones:</strong> ${data.dimensiones}</p>
                         <p><strong>Cantidad Skids:</strong> ${data.cantidad_skids}</p>
                     </div>
