@@ -5,29 +5,26 @@ import Swal from "sweetalert2";
 import trash from "../../assets/delete.svg";
 import logo from "../../assets/Logo.png";
 import { NavLink } from 'react-router-dom';
+import { useAuth } from '../Login/Autenticate';
 
 export default function () {
 
     const { users, setUsers } = useStore();
     const [dataFetched, setDataFetched] = useState(false);
+    const { token, isAuthenticated } = useAuth();
 
     const fetchData = async () => {
-        const url = 'http://localhost:3001/users';
         try {
-            const response = await axios.get(url);
-            const data = response.data; // Accedemos a la propiedad 'data'
-            if (Array.isArray(data)) { // Verificamos que los datos sean un arreglo
-                setUsers(data);
-            } else {
-                console.error('Estructura de datos inesperada:', data);
-                setUsers([]); // Aseguramos que siempre sea un arreglo
-            }
-        } catch (error) {
+            const response = await axios.get('http://localhost:3001/users', {
+              headers: { Authorization: `Bearer ${token}` },
+            });
+            setUsers(response.data);
+          } catch (error) {
             console.error('Error al obtener los datos:', error.response ? error.response.data : error.message);
-            setUsers([]); // Aseguramos que siempre sea un arreglo
-        } finally {
+            setUsers([]);
+          } finally {
             setDataFetched(true);
-        }
+          }
     };
 
     useEffect(() => {
@@ -67,26 +64,26 @@ export default function () {
     return (
         <div>
 
-<div className="slider w-full bg-[#000]  shadow-2xl h-[90px] items-center flex justify-between ">
+<div className="slider relative font-Poppins w-full bg-[#000]  shadow-2xl h-[90px] items-center flex justify-center ">
                 <div className="logo ml-5 flex ">
-                    <img className="w-[90px]" src={logo} alt="" />
+                    <img className="w-[90px] absolute left-5 top-0 " src={logo} alt="" />
                 </div>
                 <NavLink to="/home">
-                    <div className="toRegisters flex bg-white w-[90px] justify-center rounded-lg text-black mr-8 cursor-pointer transition-all">
+                    <div className="toRegisters flex  w-[90px] justify-center rounded-lg text-white mr-8 cursor-pointer transition-all">
                         
                         <p className="text-lg">Form</p>
                     </div>
                 </NavLink>
 
                 <NavLink to="/registers">
-                    <div className="toRegisters flex bg-white w-[90px] justify-center rounded-lg text-black mr-8 cursor-pointer transition-all">
+                    <div className="toRegisters flex  w-[90px] justify-center rounded-lg text-white mr-8 cursor-pointer transition-all">
                         
                         <p className="text-lg">Tables</p>
                     </div>
                 </NavLink>
 
                 <NavLink to="/register">
-                    <div className="toRegisters flex bg-white w-[100px] justify-center rounded-lg text-black mr-8 cursor-pointer transition-all">
+                    <div className="toRegisters flex w-[100px] justify-center rounded-lg text-white mr-8 cursor-pointer transition-all">
                         
                         <p className=" text-lg">Registers</p>
                     </div>
@@ -97,7 +94,7 @@ export default function () {
             <div className="overflow-x-auto mt-6">
                 {Array.isArray(users) && users.length > 0 ? ( // Verificamos que users es un arreglo
                     <div className="table-wrapper max-h-[490px] overflow-y-auto">
-                        <table className="w-[600px] m-auto bg-white shadow-md rounded-lg">
+                        <table className="w-[700px] m-auto bg-white shadow-2xl rounded-lg">
                             <thead>
                                 <tr>
                                     <th className="py-2 px-4 border-b">Username</th>

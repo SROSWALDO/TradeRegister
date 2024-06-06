@@ -16,7 +16,6 @@ export default function Tables() {
   const { setRegisters, registers } = useStore();
   const [dataFetched, setDataFetched] = useState(false);
   const { users } = useAuth();
-
   const { token } = useAuth();
 
 
@@ -97,9 +96,9 @@ export default function Tables() {
         {users?.isAdmin && (
           <>
             <NavLink to="/users">
-              <div className="toRegisters inline-flex items-center  w-[100px] justify-center rounded-sm text-white mr-8 cursor-pointer transition-all">
-                <img src={user} alt="" />
-                <p className="text-lg ml-1 mt-1 hover:text-xl transition-all ">Users</p>
+              <div className="toRegisters relative inline-flex items-center  w-[100px] justify-center rounded-sm text-white mr-8 cursor-pointer transition-all">
+                <img className='absolute left-0 top-0' src={user} alt="" />
+                <p className="text-lg ml-1  hover:text-xl transition-all ">Users</p>
               </div>
             </NavLink>
 
