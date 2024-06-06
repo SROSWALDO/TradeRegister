@@ -163,9 +163,9 @@ export default function Tables() {
                         <td className="py-2 px-4 border-b">{register.dimensiones}</td>
                         <td className="py-2 px-4 border-b">{register.cantidad_skids}</td>
                         <td className="py-2 px-4 border-b">{new Date(register.createdAt).toLocaleString()}</td>
-                        <td className="py-2 px-4 border-b">{register.usuarioId}</td>
-                        <td className="py-2 px-4 border-b">
-                          <button onClick={() => deleteRegister(register.id)} className="bg-red-500 rounded-md w-8 p-1 hover:bg-red-600">
+                        <td className="py-2 px-4 border-b text-center ">{register.usuarioId}</td>
+                        <td className="py-2 px-4 border-b ">
+                          <button onClick={() => deleteRegister(register.id)} className="bg-red-500 rounded-md w-8 p-1 ml-1 hover:bg-red-600">
                             <img src={trash} alt="Delete" />
                           </button>
                         </td>
