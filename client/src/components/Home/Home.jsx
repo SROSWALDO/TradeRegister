@@ -6,16 +6,19 @@ import { NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
 import addresOr from "../../assets/addresO.svg";
 import city from "../../assets/city.svg";
+import exit from "../../assets/exit.svg";
 import map from "../../assets/map.svg";
 import cp from "../../assets/cp.svg";
 import unidad from "../../assets/unidad.svg";
 import cantidad from "../../assets/cantidad.svg";
 import dimension from "../../assets/dimension.svg";
+import user from "../../assets/user.svg";
 import { useAuth } from "../Login/Autenticate";
 
 export default function Home() {
 
   const { token } = useAuth(); // Obtener el token del contexto de autenticación
+  const { users } = useAuth();
 
   const [formData, setFormData] = useState({
     origen: "",
@@ -203,30 +206,47 @@ export default function Home() {
     }
   };
 
+
   return (
     <>
-      <div className="contenedor w-full bg-[#eeeff1] flex">
-        <div className="slider w-[215px] bg-[#000] rounded-e-3xl shadow-2xl h-[100vh] relative">
-          <div className="logo w-full bg-black rounded-r-3xl flex justify-center">
-            <img className="w-[100px] mr-[10px]" src={logo} alt="" />
-          </div>
-
-          <NavLink to="/registers">
-            <div className="toRegisters flex cursor-pointer mt-5 hover:border-b hover:ml-1 transition-all">
-              <img className="ml-[20px]" src={bar} alt="" />
-              <p className="text-white ml-1 text-lg">Registers</p>
-            </div>
-          </NavLink>
-
-          <NavLink to="/logout">
-            <div className="toRegisters flex cursor-pointer mt-5 hover:border-b hover:ml-1 transition-all">
-              <p className="text-white absolute bottom-0 rounded-md bg-red-600 p-1 ml-1 text-lg">Logout</p>
-            </div>
-          </NavLink>
+      <div className="contenedor font-Poppins w-full bg-[#eeeff1] ">
+      <div className="slider w-full bg-[#000] relative shadow-2xl h-[90px] items-center flex justify-center">
+        <div className="logo absolute left-2 ml-5 flex">
+          <img className="w-[90px]" src={logo} alt="Logo" />
         </div>
 
-        <div className="formulario bg-[#eeeff1] ml-10 ">
-          <form onSubmit={handleSubmit} className="flex w-[1250px] h-screen">
+        <NavLink to="/registers">
+              <div className="toRegisters inline-flex items-center w-[100px] justify-center rounded-sm text-white mr-8 cursor-pointer transition-all">
+                <img className=" " src={bar} alt="" />
+                <p className="text-lg hover:text-xl ml-1 mt-1 transition-all">Registers</p>
+              </div>
+          </NavLink>
+
+        {users?.isAdmin && (
+          <>
+            <NavLink to="/users">
+              <div className="toRegisters inline-flex items-center w-[100px] justify-center rounded-sm text-white mr-8 cursor-pointer transition-all">
+              <img className=" " src={user} alt="" />
+                <p className="text-lg hover:text-xl ml-1 mt-1 transition-all ">Users</p>
+              </div>
+            </NavLink>
+
+            
+          </>
+        )}
+
+           
+
+        <NavLink to="/logout">
+          <div className="toRegisters absolute right-3 top-8 flex bg-red-600 hover:bg-red-700 w-[130px] p-[2px] justify-center rounded-xl text-white mr-8 cursor-pointer transition-all">
+            <p className="text-lg mr-2">Log out</p>
+            <img src={exit} alt="" />
+          </div>
+        </NavLink>
+      </div>
+
+        <div className="formulario bg-[#eeeff1] ">
+          <form onSubmit={handleSubmit} className="flex w-[1250px] mt-4 m-auto ">
             <div className="m-auto">
               <div>
                 <div className="mt-5 bg-white rounded-lg shadow-2xl">
@@ -539,7 +559,7 @@ export default function Home() {
                         <span className="pl-2 mx-1">Save</span>
                       </button>
                     </div>
-                    <div className="flex-initial">
+                    {/* <div className="flex-initial">
                       <button
                         type="button"
                         className="flex items-center px-5 py-2.5 font-medium tracking-wide text-black capitalize rounded-md hover:bg-green-200 hover:fill-current hover:text-green-600 focus:outline-none transition duration-300 transform active:scale-95 ease-in-out">
@@ -553,7 +573,7 @@ export default function Home() {
                           <path d="M3.478 2.404a.75.75 0 0 0-.926.941l2.432 7.905H13.5a.75.75 0 0 1 0 1.5H4.984l-2.432 7.905a.75.75 0 0 0 .926.94 60.519 60.519 0 0 0 18.445-8.986.75.75 0 0 0 0-1.218A60.517 60.517 0 0 0 3.478 2.404Z" />
                         </svg>
                       </button>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>

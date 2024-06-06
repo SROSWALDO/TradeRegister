@@ -8,6 +8,9 @@ import Swal from "sweetalert2";
 import { useAuth } from '../Login/Autenticate';
 import RegisterPDF from './RegisterPDF'
 import { PDFDownloadLink } from '@react-pdf/renderer';
+import exit from "../../assets/exit.svg";
+import user from "../../assets/user.svg";
+import formulario from "../../assets/formulario.svg";
 
 export default function Tables() {
   const { setRegisters, registers } = useStore();
@@ -79,36 +82,39 @@ export default function Tables() {
   };
 
   return (
-    <div className="contenedor">
-      <div className="slider w-full bg-[#000] shadow-2xl h-[90px] items-center flex justify-between">
-        <div className="logo ml-5 flex">
+    <div className="contenedor font-Poppins ">
+      <div className="slider w-full bg-[#000] relative shadow-2xl h-[90px] items-center flex justify-center">
+        <div className="logo absolute left-2 ml-5 flex">
           <img className="w-[90px]" src={logo} alt="Logo" />
         </div>
         <NavLink to="/home">
-          <div className="toRegisters flex bg-white w-[90px] justify-center rounded-sm text-black mr-8 cursor-pointer transition-all">
-            <p className="text-lg">Form</p>
+          <div className="toRegisters flex  w-[90px] justify-center rounded-sm text-white mr-8 cursor-pointer transition-all">
+            <img src={formulario} alt="" />
+            <p className="text-lg hover:text-xl ml-1 transition-all">Form</p>
           </div>
         </NavLink>
 
         {users?.isAdmin && (
           <>
             <NavLink to="/users">
-              <div className="toRegisters flex bg-white w-[100px] justify-center rounded-sm text-black mr-8 cursor-pointer transition-all">
-                <p className="text-lg">Users</p>
+              <div className="toRegisters inline-flex items-center  w-[100px] justify-center rounded-sm text-white mr-8 cursor-pointer transition-all">
+                <img src={user} alt="" />
+                <p className="text-lg ml-1 mt-1 hover:text-xl transition-all ">Users</p>
               </div>
             </NavLink>
 
-            <NavLink to="/register">
-              <div className="toRegisters flex bg-white w-[100px] justify-center rounded-sm text-black mr-8 cursor-pointer transition-all">
-                <p className="text-lg">Registers</p>
+            {/* <NavLink to="/register">
+              <div className="toRegisters flex w-[100px] justify-center rounded-sm text-white mr-8 cursor-pointer transition-all">
+                <p className="text-lg hover:text-xl transition-all">Registers</p>
               </div>
-            </NavLink>
+            </NavLink> */}
           </>
         )}
 
         <NavLink to="/logout">
-          <div className="toRegisters flex bg-red-600 w-[100px] justify-center rounded-sm text-white mr-8 cursor-pointer transition-all">
-            <p className="text-lg">Log out</p>
+          <div className="toRegisters absolute right-3 top-8 flex bg-red-600 hover:bg-red-700 w-[130px] p-[2px] justify-center rounded-xl text-white mr-8 cursor-pointer transition-all">
+            <p className="text-lg mr-2">Log out</p>
+            <img src={exit} alt="" />
           </div>
         </NavLink>
       </div>
@@ -121,7 +127,7 @@ export default function Tables() {
             {Array.isArray(registers) && registers.length > 0 ? (
               <div className="table-wrapper max-h-[490px] overflow-y-auto">
                 <table className="min-w-full bg-white shadow-md rounded-lg">
-                  <thead>
+                  <thead className='bg-white' >
                     <tr>
                       <th className="py-2 px-4 border-b">ID</th>
                       <th className="py-2 px-4 border-b">Origen</th>
@@ -139,7 +145,7 @@ export default function Tables() {
                       <th className="py-2 px-4 border-b"></th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody className=' text-sm ' >
                     {registers.map((register, index) => (
                       <tr key={index}>
                         <td className="py-2 px-4 border-b text-blue-700 underline cursor-pointer">
