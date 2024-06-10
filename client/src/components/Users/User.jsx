@@ -7,7 +7,7 @@ import logo from "../../assets/Logo.png";
 import { NavLink } from 'react-router-dom';
 import { useAuth } from '../Login/Autenticate';
 
-export default function () {
+export default function User () {
 
     const { users, setUsers } = useStore();
     const [dataFetched, setDataFetched] = useState(false);

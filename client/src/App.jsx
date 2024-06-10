@@ -6,10 +6,11 @@ import Navbar from "./components/Navbar/Navbar";
 import Tables from "./components/Tables/Tables";
 import Login from "./components/Login/Login";
 import Register from "./components/Login/Register";
-import User from "./components/Users/User";
+// import User from "./components/Users/User";
 import { AuthProvider } from "./components/Login/Autenticate";
 import ProtectedRoute from "./components/Login/protecRoutes";
 import Logout from "./components/Login/Logout";
+import User from "./components/Users/User";
 
 function App() {
   return (

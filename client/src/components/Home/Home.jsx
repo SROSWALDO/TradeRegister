@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import logo from "../../assets/Logo.png";
 import bar from "../../assets/bar.svg";
@@ -18,7 +18,17 @@ import { useAuth } from "../Login/Autenticate";
 export default function Home() {
 
   const { token } = useAuth(); // Obtener el token del contexto de autenticación
-  const { users } = useAuth();
+  const { users, setUsers } = useAuth();
+  const { isAuthenticated } = useAuth();
+
+  useEffect(() => {
+    if (isAuthenticated && !users) {
+      const storedUsers = localStorage.getItem('users');
+      if (storedUsers) {
+        setUsers(JSON.parse(storedUsers));
+      }
+    }
+  }, [isAuthenticated, users, setUsers]);
   
 
   const [formData, setFormData] = useState({
